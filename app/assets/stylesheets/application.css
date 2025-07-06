@@ -20,10 +20,10 @@ body {
 
 /* 全体を中央寄せし、最大幅を設定 */
 .container {
-  max-width: 960px;
-  margin: 40px auto;
+  max-width: 1200px;
+  margin: 20px auto;
   background-color: #ffffff;
-  padding: 30px;
+  padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
@@ -64,42 +64,86 @@ h1 {
   background-color: #0056b3;
 }
 
-/* テーブルのデザイン */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-th, td {
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-th {
-  font-size: 14px;
-  text-transform: uppercase;
-  color: #777;
-}
-
-/* テーブル行のホバーエフェクト */
-tbody tr:hover {
-  background-color: #f9f9f9;
-}
-
-/* 質問タイトルを少し目立たせる */
-.question-title {
-  font-weight: bold;
-  color: #34495e;
-}
-
 /* 操作リンク */
 .action-links a {
+  display: block; /* これでリンクが縦に並びます */
   color: #007bff;
   text-decoration: none;
-  margin-right: 10px;
+  margin-bottom: 8px; /* リンク間の「縦」の余白を指定 */
 }
 .action-links a:hover {
   text-decoration: underline;
+}
+
+
+/* カードリストのコンテナ */
+.questions-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+/* 個々の質問カード */
+.question-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.question-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* カードの主要部分 */
+.card-body {
+  padding: 25px;
+  flex-grow: 1;
+}
+
+.card-title-link {
+  font-size: 20px;
+  color: #34495e;
+  text-decoration: none;
+  font-weight: 600;
+}
+.card-title-link:hover {
+  text-decoration: underline;
+}
+
+.card-meta {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin: 8px 0 15px 0;
+}
+
+.card-content {
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* カードのフッター（操作リンク） */
+.card-footer {
+  padding: 15px 25px;
+  border-top: 1px solid #f0f0f0;
+  text-align: right;
+}
+
+.card-action-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 18px;
+  font-size: 14px;
+}
+
+.card-action-link-danger {
+  color: #dc3545; /* 削除ボタンは赤色に */
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 18px;
+  font-size: 14px;
 }

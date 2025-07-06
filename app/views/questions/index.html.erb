@@ -6,26 +6,27 @@
 
   <h1>Questions</h1>
 
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>Tilte</th>
-      <th>Name</th>
-      <th>Content</th>
-      <th>Actions</th>
-    <tr>
+  <!--  ▼▼▼ ここからカードリストの構造 ▼▼▼ -->
+  <div class="questions-list">
     <% @questions.each do |question| %>
-      <tr>
-        <td data-label="ID"><%= question.id %></td>
-        <td data-label="Title"><%= question.title %></td>
-        <td data-label="Name"><%= question.name %></td>
-        <td data-label="Content"><%= question.content %></td>
-        <td data-label="Actions" class="action-links">
-          <%= link_to 'show', question_path(question) %>
-          <%= link_to 'edit', edit_question_path(question) %>
-          <%= link_to 'destroy', question_path(question), data: { turbo_method: 'delete', turbo_confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
+      <div class="question-card">
+        <!-- カードの主要部分 -->
+        <div class="card-body">
+          <h2 class="card-title">
+            <%= link_to question.title, question_path(question), class: "card-title-link" %>
+          </h2>
+          <p class="card-meta">by <%= question.name %></p>
+          <p class="card-content"><%= truncate(question.content, length: 100) %></p>
+        </div>
+
+        <!-- カードのフッター（操作リンク） -->
+        <div class="card-footer">
+          <%= link_to 'Show', question_path(question), class: 'card-action-link' %>
+          <%= link_to 'Edit', edit_question_path(question), class: 'card-action-link' %>
+          <%= link_to 'Destroy', question_path(question), class: 'card-action-link-danger', data: { turbo_method: 'delete', turbo_confirm: 'Are you sure?' } %>
+        </div>
+      </div>
     <% end %>
-  </table>
+  </div>
+  <!-- ▲▲▲ ここまで ▲▲▲ -->
 </div>
