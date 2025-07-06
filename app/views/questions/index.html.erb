@@ -1,25 +1,31 @@
-<h1>Questions</h1>
-<%= link_to 'new', new_question_path %>
+<div class="container">
+  <div class="header">
+    <h1><%= link_to 'Q&A mini', questions_path %></h1>
+    <%= link_to 'New Question', new_question_path, class: "new-question-btn" %>
+  </div>
 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Tilte</th>
-    <th>Name</th>
-    <th>Content</th>
-    <th></th>
-  <tr>
-  <% @questions.each do |question| %>
+  <h1>Questions</h1>
+
+  <table>
     <tr>
-      <td><%= question.id %></td>
-      <td><%= question.title %></td>
-      <td><%= question.name %></td>
-      <td><%= question.content %></td>
-      <td><%= link_to 'show', question_path(question) %></td>
-      <td><%= link_to 'edit', edit_question_path(question) %></td>
-      <td><%= link_to 'destroy', question_path(question), 
-        data: { turbo_method: 'delete', turbo_confirm: 'Are you sure?' } %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+      <th>ID</th>
+      <th>Tilte</th>
+      <th>Name</th>
+      <th>Content</th>
+      <th>Actions</th>
+    <tr>
+    <% @questions.each do |question| %>
+      <tr>
+        <td data-label="ID"><%= question.id %></td>
+        <td data-label="Title"><%= question.title %></td>
+        <td data-label="Name"><%= question.name %></td>
+        <td data-label="Content"><%= question.content %></td>
+        <td data-label="Actions" class="action-links">
+          <%= link_to 'show', question_path(question) %>
+          <%= link_to 'edit', edit_question_path(question) %>
+          <%= link_to 'destroy', question_path(question), data: { turbo_method: 'delete', turbo_confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,3 +1,7 @@
+<div class="header">
+  <h1><%= link_to 'Q&A mini', questions_path %></h1>
+</div>
+
 <h1>Show</h1>
 
 <p>Title: <br><%= @question.title %></p>
@@ -35,5 +39,3 @@
     <%= form.submit %>
   </div>
 <% end %>
-
-<%= link_to 'top', questions_path %>
