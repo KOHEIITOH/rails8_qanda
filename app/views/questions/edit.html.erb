@@ -1,37 +1,13 @@
-<div class="header">
-  <h1><%= link_to 'Q&A mini', questions_path %></h1>
-</div>
-
-<h1>Edit</h1>
-
-<%= render partial: 'form' %>
-
-<!-- 
-<%= form_with model: @question do |form| %>
-  <% if @question.errors.any? %>
-    <div>
-      <ul>
-        <% @question.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </div>
-  <div>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </div>
-  <div>
-    <%= form.label :content %><br>
-    <%= form.text_area :content %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "forms", "data-turbo-track": "reload" %>
 <% end %>
--->
+
+<div class="container">
+  <div class="header">
+    <h1><%= link_to 'Q&A mini', questions_path %></h1>
+  </div>
+
+  <h1>Edit</h1>
+
+  <%= render partial: 'form' %>
+</div

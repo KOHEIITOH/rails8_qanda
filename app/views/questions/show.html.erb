@@ -1,41 +1,57 @@
-<div class="header">
-  <h1><%= link_to 'Q&A mini', questions_path %></h1>
-</div>
-
-<h1>Show</h1>
-
-<p>Title: <br><%= @question.title %></p>
-<p>Name: <br><%= @question.name %></p>
-<p>Content: <br><%= @question.content %></p>
-
-<h2>Answers</h2>
-<% @question.answers.each do |answer| %>
-  <p>
-    Name: <br>
-    <%= answer.name %>
-  </p>
-
-  <p>
-    Content: <br>
-    <%= answer.content %>
-  </p>
-  <p>
-    <%= link_to 'Destroy Answer', [answer.question, answer], 
-    data: { turbo_method: 'delete', turbo_confirm: 'Are you sure?'} %>
-  </p>
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "show", "data-turbo-track": "reload" %>
 <% end %>
 
-<h2>Add an answer</h2>
-<%= form_with model: [@question, @question.answers.build] do |form| %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<div class="container">
+  <div class="header">
+    <h1><%= link_to 'Q&A mini', questions_path %></h1>
   </div>
-  <div>
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+
+
+  <!-- 質問エリア -->
+  <div class="card">
+    <div class="card-header">
+      <h1><%= @question.title %></h1>
+      <p class="author">by <%= @question.name %></p>
+    </div>
+    <div class="card-body">
+      <p><%= simple_format(h(@question.content)) %></p>
+    </div>
   </div>
-  <div>
-    <%= form.submit %>
+
+
+  <!-- 回答エリア -->
+  <div class="answers-section">
+    <h2>Answers</h2>
+    <% @question.answers.each do |answer| %>
+      <div class="card answer-card">
+        <p class="author"><%= answer.id %><br>by <%= answer.name %></p>
+        <p><%= simple_format(h(answer.content)) %></p>
+        <div class="card-footer">
+          <%= link_to 'Destroy Answer', [answer.question, answer], 
+              data: { turbo_method: 'delete', turbo_confirm: 'Are you sure?'}, class: "destroy-link" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+
+
+
+  <!-- 回答フォーム -->
+  <div class="card answer-form">
+    <h2>Add an answer</h2>
+    <%= form_with model: [@question, @question.answers.build] do |form| %>
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
+      <div class="form-group">
+        <%= form.label :content %>
+        <%= form.text_area :content %>
+      </div>
+      <div class="form-actions">
+        <%= form.submit "Create Answer" %>
+      </div>
+    <% end %>
+  </div>
+</div

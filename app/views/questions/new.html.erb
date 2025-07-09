@@ -1,7 +1,13 @@
-<div class="header">
-  <h1><%= link_to 'Q&A mini', questions_path %></h1>
-</div>
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "forms", "data-turbo-track": "reload" %>
+<% end %>
 
-<h1>New Questions</h1>
+<div class="container">
+  <div class="header">
+    <h1><%= link_to 'Q&A mini', questions_path %></h1>
+  </div>
 
-<%= render partial: 'form' %>
+  <h1>New Questions</h1>
+
+  <%= render partial: 'form' %>
+</div
