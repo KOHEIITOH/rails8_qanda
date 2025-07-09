@@ -38,8 +38,13 @@ body {
   margin-bottom: 20px;
 }
 
-.header a {
+.header h1 a {
+  color: #333;
   text-decoration: none;
+  font-size: 1.5rem;
+}
+.header h1 a:hover {
+  text-decoration: underline;
 }
 
 h1 {
